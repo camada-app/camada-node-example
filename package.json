@@ -1,0 +1,14 @@
+{
+  "name": "camada-node-example",
+  "private": true,
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@camada/node": "file:../camada-node",
+    "express": "^4.21.0"
+  }
+}
