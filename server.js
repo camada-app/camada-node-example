@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 const page = (req, title, body) => `<!doctype html>
 <html><head><meta charset="utf-8"><title>${title}</title>${camada.scriptTag(req)}</head>
 <body style="font-family: system-ui; max-width: 40rem; margin: 3rem auto">
-<nav><a href="/">home</a> · <a href="/pricing">pricing</a> · <a href="/login-form">login</a></nav>
+<nav><a href="/">home</a> · <a href="/pricing">pricing</a> · <a href="/login-form">login</a> · <a href="/challenge-me">challenge</a></nav>
 <h1>${title}</h1>${body}</body></html>`;
 
 app.get('/', (req, res) => res.send(page(req, 'camada example shop', `
@@ -38,6 +38,15 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/api/data', (_req, res) => res.json({ ok: true, at: Date.now() }));
+
+// SDK-04 demo: force the challenge for this route, whatever the snapshot says. In production
+// the same page is served automatically for a `challenge` verdict. Once solved, the `_cch`
+// cookie is good for an hour and this route renders normally.
+app.get('/challenge-me', (req, res) => {
+  if (camada.serveChallenge(req, res)) return;
+  res.send(page(req, 'Challenge passed', `
+    <p>The <code>_cch</code> cookie is set for an hour. Clear it (or open a private window) to see the check again.</p>`));
+});
 
 app.use((req, res) => res.status(404).send(page(req, '404', '<p>Nothing here.</p>')));
 
