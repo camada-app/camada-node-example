@@ -33,7 +33,7 @@ app.get('/login-form', (req, res) => res.send(page(req, 'Log in', `
 
 app.post('/login', (req, res) => {
   const ok = req.body.user === 'demo@example.com' && req.body.pass === 'demo';
-  camada.track(req, ok ? 'login_ok' : 'login_failed', { user: req.body.user || '' });   // uid is HMAC-hashed in the SDK
+  camada.track(req, ok ? 'login_succeeded' : 'login_failed', { user: req.body.user || '' });   // uid is HMAC-hashed in the SDK
   res.status(ok ? 200 : 401).send(page(req, ok ? 'Welcome' : 'Nope', `<p>login ${ok ? 'succeeded' : 'failed'}</p>`));
 });
 
