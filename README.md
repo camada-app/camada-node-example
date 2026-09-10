@@ -18,8 +18,8 @@ edge-analyst. This is the hand-test bench for the Node SDK.
    response carries an `x-rid` header and sets the `_sfp` cookie.
 2. Click/type before the beacon fires — the `/_cam/fp` payload's `input` counters are non-zero.
 3. `curl -i http://localhost:3000/ -H 'X-Forwarded-For: 203.0.113.66'` → **403** with
-   `x-block-reason: ip4` (that IP is blocked by the seeded analysis; allow ~30 s after seed for
-   the snapshot poll).
+   `x-block-reason: rule` and `x-block-rule: builtin:block` (the seed blocks that IP as an entry
+   of the built-in block list on snapshot v5; allow ~30 s after seed for the snapshot poll).
 4. Fail three logins (`demo@example.com` / anything wrong) via `/login-form`, then run an
    analysis (`curl -s -X POST -H 'authorization: Bearer dev' 'http://localhost:8787/admin/run?tenant=acme&minutes=10'`) —
    events include `login_failed` rows with a hashed `uid`; your raw email appears nowhere.
