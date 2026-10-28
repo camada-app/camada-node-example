@@ -51,4 +51,5 @@ app.get('/challenge-me', (req, res) => {
 app.use((req, res) => res.status(404).send(page(req, '404', '<p>Nothing here.</p>')));
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`camada-node-example on http://localhost:${port}`));
+// HOST (optional) binds one interface, e.g. 127.0.0.1 for the camada-web walk stacks; unset listens on all, as before.
+app.listen(port, process.env.HOST, () => console.log(`camada-node-example on http://localhost:${port}`));
