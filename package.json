@@ -3,6 +3,28 @@
   "private": true,
   "version": "0.0.1",
   "license": "MIT",
+  "description": "Express example app using @camada/node for inline blocklist enforcement, first-party beacon serving, and proof-of-work challenges",
+  "homepage": "https://www.camada.app/docs/quickstart/express",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camada-app/camada-node-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/camada-app/camada-node-example/issues"
+  },
+  "keywords": [
+    "camada",
+    "nodejs",
+    "express",
+    "example",
+    "bot-detection",
+    "bot-protection",
+    "credential-stuffing",
+    "account-takeover",
+    "rate-limiting",
+    "proof-of-work",
+    "ai-scraper"
+  ],
   "type": "module",
   "scripts": {
     "start": "node server.js"
